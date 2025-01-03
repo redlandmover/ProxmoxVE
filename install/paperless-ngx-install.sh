@@ -145,21 +145,21 @@ if [[ "${prompt,,}" =~ ^(y|yes)$ ]]; then
   msg_ok "Installed Adminer"
 fi
 
-msg_info "Setting up admin Paperless-ngx User & Password"
+##msg_info "Setting up admin Paperless-ngx User & Password"
 ## From https://github.com/linuxserver/docker-paperless-ngx/blob/main/root/etc/cont-init.d/99-migrations
-cat <<EOF | python3 /opt/paperless/src/manage.py shell
-from django.contrib.auth import get_user_model
-UserModel = get_user_model()
-user = UserModel.objects.create_user('admin', password='$DB_PASS')
-user.is_superuser = True
-user.is_staff = True
-user.save()
-EOF
-echo "" >>~/paperless.creds
-echo -e "Paperless-ngx WebUI User: \e[32madmin\e[0m" >>~/paperless.creds
-echo -e "Paperless-ngx WebUI Password: \e[32m$DB_PASS\e[0m" >>~/paperless.creds
-echo "" >>~/paperless.creds
-msg_ok "Set up admin Paperless-ngx User & Password"
+##cat <<EOF | python3 /opt/paperless/src/manage.py shell
+##from django.contrib.auth import get_user_model
+##UserModel = get_user_model()
+##user = UserModel.objects.create_user('admin', password='$DB_PASS')
+##user.is_superuser = True
+##user.is_staff = True
+##user.save()
+##EOF
+##echo "" >>~/paperless.creds
+##echo -e "Paperless-ngx WebUI User: \e[32madmin\e[0m" >>~/paperless.creds
+##echo -e "Paperless-ngx WebUI Password: \e[32m$DB_PASS\e[0m" >>~/paperless.creds
+##echo "" >>~/paperless.creds
+##msg_ok "Set up admin Paperless-ngx User & Password"
 
 msg_info "Creating Services"
 cat <<EOF >/etc/systemd/system/paperless-scheduler.service
